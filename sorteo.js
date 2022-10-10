@@ -1,10 +1,14 @@
 let codigo =Math.random();
 let precioticket1 = 100;
+let precioIphone12 =25000;
+let preciosamsungs22 =20000;
+let espacio256 = 100;
+let espacio512 = 150;
 
 
 //SALUDO AL CLIENTE
-alert('Bienvenido Al sorteo!');
-let inputUsuario = prompt('Te  Gustaria  participar del  Sorteo  SI/NO?').toLowerCase();
+alert('Bienvenido Al Menu!');
+let inputUsuario = prompt('Para  ingresar al  Sorteo(1) E-Commerce Celulares(2)').toLowerCase();
 
 //INICIO  DE  FUNCION Y  COMIENZO  DE  INPUT  DE DATOS
 function sorteo1() {
@@ -41,9 +45,45 @@ function sorteo1() {
             alert('La opcion ingresada es invalida!');
     }
 }
+
+function celular(){
+    let marca = parseInt(prompt('Ingresa la Marca deseada  Samsung 1;  Apple 2; Regresar al menu3'));
+
+    switch (marca) {
+        case 1:
+            alert(`El Precio de El Samsung S22 es: ${preciosamsungs22}`);
+            let espacio = prompt(`Ingrese la cantidad de espacio deseado 256/512 (Gb)`);
+            if (espacio == 256)
+            alert (`El costo final sera de:${preciosamsungs22}+${espacio256}`)
+
+            else{
+                alert (`El costo final sera de:${preciosamsungs22}+${espacio512}`)
+ 
+            }
+            break;
+        case 2:
+            alert(`El Precio de El iPhone12 es: ${precioIphone12}`);
+            let espacioiphone = prompt(`Ingrese la cantidad de espacio deseado 256/512 (Gb)`);
+            if (espacioiphone == 256)
+            alert (`El costo final sera de:$${precioIphone12+espacio256}`)
+
+            else{
+                alert (`El costo final sera de:$${precioIphone12}+${espacio512}`)
+            }
+            break;
+        case 3:
+            break;     
+
+
+    }
+
+}
 //llamar function
-if(inputUsuario  == "si"){
+if(inputUsuario  == "1"){
     sorteo1()
+}
+if(inputUsuario == "2"){
+    celular()
 }
 //MENSAJE DE EXIT
 alert('Hasta Luego!');
