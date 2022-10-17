@@ -1,89 +1,118 @@
-let codigo =Math.random();
-let precioticket1 = 100;
-let precioIphone12 =25000;
-let preciosamsungs22 =20000;
-let espacio256 = 100;
-let espacio512 = 150;
+var codigo = Math.random();
+const precioticket1 = 100;
+const precioIphone12 =25000;
+const preciosamsungs22 =20000;
+const espacio256 = 100;
+const espacio512 = 150;
 
-
-//SALUDO AL CLIENTE
 alert('Bienvenido Al Menu!');
-let inputUsuario = prompt('Para  ingresar al  Sorteo(1) E-Commerce Celulares(2)').toLowerCase();
 
-//INICIO  DE  FUNCION Y  COMIENZO  DE  INPUT  DE DATOS
-function sorteo1() {
-    let ventilador = prompt('Ingresa la  cantidad de  tickets a comprar');
-    let nombre = prompt('Ingresa tu Nombre');
-    let apellido =  prompt('Ingresa tu Apellido');
-    let formadepago = parseInt(prompt('Ingresa el metodo de pago, 1:Efectivo 2:Tarjeta'));
+//Class
+class Usuario {
+    constructor(nombre, apellido, email, tipoPago, ventilador){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.tipoPago = tipoPago;
+        this.ventilador = ventilador;
+    }
+    callUser() {
+        return `Se han comprado: ${this.ventilador} ticket/s con el codigo: #${codigo} a nombre de: ${this.nombre} ${this.apellido}, ${this.email} SUERTE!`;
+    }
+    
+}
+// INICIO FUNTION SORTEO
+function sorteo1(infoUser) {
+    
     //INICIO  DE SWITCH =EFECTIVO O  TARJETA  + COMPROBANTE
-    switch (formadepago)  {
+    switch (infoUser.tipoPago)  {
         case 1:
             alert(`El Precio por ticket de ventilador es de ${precioticket1}`);
-            alert(`El precio por ${ventilador}ticket/s para Ventilador es de: ${precioticket1*ventilador}`);
+            alert(`El precio por ${infoUser.ventilador}ticket/s para Ventilador es de: ${precioticket1*infoUser.ventilador}`);
             let confirmar = parseInt(prompt('Desea Confirmar la Compra 1 SI 2 NO').toLowerCase());
             if(confirmar == 1){
-                alert(`Se han comprado: ${ventilador} ticket/s con el codigo: #${codigo} a nombre de ${nombre}_${apellido} SUERTE!`);
+                alert(infoUser.callUser());
             }
             else{
                 alert('La Compra ha sido cancelada');
-            }
-            break;
+                }
+                break;
         case 2:
             alert(`El Precio por ticket de ventilador es de ${precioticket1}`);
-            alert(`El precio por ${ventilador}ticket/s para Ventilador es de: ${precioticket1*ventilador}`);
+            alert(`El precio por ${infoUser.ventilador}ticket/s para Ventilador es de: ${precioticket1*infoUser.ventilador}`);
             let banco = prompt('Desea usar VISA? 1 SI 2 NO').toLowerCase();
             if(banco == 1){
-                alert(`Se han comprado: ${ventilador} tickets con el codigo: #${codigo} a nombre de ${nombre}_${apellido} SUERTE!`);
+                alert(infoUser.callUser());
             }
             else{
                 alert('La Compra ha sido cancelada!');
             }
-            
-            break;
-        default:
-            alert('La opcion ingresada es invalida!');
+                
+                break;
+            default:
+                alert('La opcion ingresada es invalida!');
+        }
     }
-}
-
+    
+// INICIO FUNTION E-COMMERCE  CELULAR
 function celular(){
-    let marca = parseInt(prompt('Ingresa la Marca deseada  Samsung 1;  Apple 2; Regresar al menu3'));
+     let marca = parseInt(prompt('Ingresa la Marca deseada  Samsung 1;  Apple 2; Regresar al menu3'));
 
-    switch (marca) {
-        case 1:
-            alert(`El Precio de El Samsung S22 es: ${preciosamsungs22}`);
-            let espacio = prompt(`Ingrese la cantidad de espacio deseado 256/512 (Gb)`);
-            if (espacio == 256)
-            alert (`El costo final sera de:${preciosamsungs22}+${espacio256}`)
+     switch (marca) {
+         case 1:
+             alert(`El Precio de El Samsung S22 es: ${preciosamsungs22}`);
+             let espacio = prompt(`Ingrese la cantidad de espacio deseado 256/512 (Gb)`);
+             if (espacio == 256)
+             alert (`El costo final sera de:${preciosamsungs22+espacio256}`)
 
-            else{
-                alert (`El costo final sera de:${preciosamsungs22}+${espacio512}`)
+             else{
+                 alert (`El costo final sera de:${preciosamsungs22+espacio512}`)
  
-            }
-            break;
-        case 2:
-            alert(`El Precio de El iPhone12 es: ${precioIphone12}`);
-            let espacioiphone = prompt(`Ingrese la cantidad de espacio deseado 256/512 (Gb)`);
-            if (espacioiphone == 256)
-            alert (`El costo final sera de:$${precioIphone12+espacio256}`)
+             }
+             break;
+         case 2:
+             alert(`El Precio de El iPhone12 es: ${precioIphone12}`);
+             let espacioiphone = prompt(`Ingrese la cantidad de espacio deseado 256/512 (Gb)`);
+             if (espacioiphone == 256)
+             alert (`El costo final sera de:$${precioIphone12+espacio256}`)
 
-            else{
-                alert (`El costo final sera de:$${precioIphone12}+${espacio512}`)
-            }
-            break;
-        case 3:
-            break;     
-
-
+             else{
+                 alert (`El costo final sera de:$${precioIphone12+espacio512}`)
+             }
+             break;
+         case 3:
+             break;
     }
+}
+
+//INPUT USIARIO
+const nuevoUsuario = () =>{
+    let nombre = prompt('Ingresa tu Nombre');
+    let apellido =  prompt('Ingresa tu Apellido');
+    let email = prompt('Ingresa tu email')
+    let tipoPago = parseInt(prompt('Ingresa el metodo de pago, 1:Efectivo 2:Tarjeta'));
+    let ventilador = prompt('Ingresa la  cantidad de  tickets a comprar');
+    let classUsuario = new Usuario(nombre,  apellido,  email, tipoPago, ventilador)
+    return(classUsuario)
 
 }
-//llamar function
-if(inputUsuario  == "1"){
-    sorteo1()
+
+//SELECTOR DE  MENU
+function start(ingresoSorteo){
+    if(ingresoSorteo  == 1){
+        let infoUser = nuevoUsuario()
+        console.log(infoUser.nombre)
+        //alert(infoUser.sorteo1)
+        sorteo1(infoUser)
+    }
+    else if(ingresoSorteo  == 2){
+        celular()
+        
+    }
+    else{
+        alert('Hasta Luego!')
+    }
 }
-if(inputUsuario == "2"){
-    celular()
-}
-//MENSAJE DE EXIT
-alert('Hasta Luego!');
+//PROMPT SELECTOR MENU Y START FUNTION
+let ingresoSorteo = prompt('Para participar en el Sorteo ingrese 1 o para ingresar al E-Commerce de Celulares ingrese 2')
+start(ingresoSorteo)
