@@ -1,4 +1,4 @@
-var codigo = Math.random();
+var codigo = Math.floor(Math.random() * (999999 - 111111) + 1);
 const precioticket1 = 100;
 const precioIphone12 =25000;
 const preciosamsungs22 =20000;
@@ -15,12 +15,19 @@ class Usuario {
         this.email = email;
         this.tipoPago = tipoPago;
         this.ventilador = ventilador;
+        localStorage.setItem("Nombre", `${this.nombre}` )
+        localStorage.setItem("Apellido", `${this.apellido}` )
+
     }
     callUser() {
         return `Se han comprado: ${this.ventilador} ticket/s con el codigo: #${codigo} a nombre de: ${this.nombre} ${this.apellido}, ${this.email} SUERTE!`;
     }
     
 }
+//Guardar identificador de  Sorteo para Numero ganador
+localStorage.setItem("Codigo", codigo)
+
+
 // INICIO FUNTION SORTEO
 function sorteo1(infoUser) {
     
@@ -83,6 +90,14 @@ function celular(){
          case 3:
              break;
     }
+}
+
+//Funtion Numero Ganador  Sorteo
+function ganador(infoUser){
+    let numIngresado = parseInt(prompt("Ingrese su Codigo a Verificar:"))
+    //Seleccionar un codigo random entre los CODIGOS guardados de local storage  y  elegir uno al azar
+    let 
+    //if(numIngresado  === )
 }
 
 //INPUT USIARIO
